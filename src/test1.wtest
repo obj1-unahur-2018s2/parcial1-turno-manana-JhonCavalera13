@@ -1,0 +1,69 @@
+import profesionales.*
+import empresaDeServicios.*
+test "test 1" {
+	
+	//Universidades
+	var universidad = new Universidades()
+	universidad.setProvincias("San Martin")
+	universidad.setHonorarios(3500)
+	
+	var universidad1 = new Universidades()
+	universidad1.setProvincias("Rosario")
+	universidad1.setHonorarios(2800)
+	
+	var universidad2 = new Universidades()
+	universidad2.setProvincias("Corrientes")
+	universidad2.setHonorarios(4200)
+	
+	var universidad3 = new Universidades()
+	universidad3.setProvincias("Hurlingham")
+	universidad3.setHonorarios(8800)
+	
+	
+	
+	//Profecionales
+	var juana = new ProfesionalVinculado()
+	juana.universidad(universidad1)
+	
+	assert.equals("Rosario",juana.provinciasDondePuedeTrabajar())
+	assert.equals(2800,juana.honorariosPorHora())
+	
+	//Melina
+	var melina = new ProfesionalAsociado()
+	melina.universidad("Corrientes")
+	
+	assert.equals(3000,melina.honorariosPorHora())
+	
+	//Rocio
+	var rocio = new ProfesionalLibre()
+	rocio.universidad("Hurlingham")
+	rocio.setHonorario(5000)
+	rocio.provincias(#{"Santa fe","Cordoba","Buenos Aires"})
+	
+	
+	assert.equals(5000,rocio.honorariosPorHora())
+	assert.equals(#{"Santa fe","Cordoba","Buenos Aires"},rocio.provinciasDondePuedeTrabajar())
+	
+	//Luciana 
+	var luciana = new ProfesionalLibre()
+	luciana.universidad("Rosario")
+	luciana.setHonorario(3200)
+	luciana.provincias(#{"Santa fe","Entre Rios"})
+	
+	
+	assert.equals(3200,luciana.honorariosPorHora())
+	assert.equals(#{"Santa fe","Entre Rios"},luciana.provinciasDondePuedeTrabajar())
+	
+	
+	
+	//Empresa de serivicio
+	var empresa = new EmpresaDeServicios()
+	empresa.honorariosReferencia(3500)
+	empresa.profecionales(rocio)
+	empresa.profecionales(luciana)
+	empresa.profecionales(melina)
+	empresa.profecionales(juana)
+	
+	assert.equals(#{rocio},empresa.profecionalesCaros())
+	
+}
