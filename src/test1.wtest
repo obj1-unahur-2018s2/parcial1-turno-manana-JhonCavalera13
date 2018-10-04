@@ -30,13 +30,13 @@ test "test 1" {
 	
 	//Melina
 	var melina = new ProfesionalAsociado()
-	melina.universidad("Corrientes")
+	melina.universidad(universidad2)
 	
 	assert.equals(3000,melina.honorariosPorHora())
 	
 	//Rocio
 	var rocio = new ProfesionalLibre()
-	rocio.universidad("Hurlingham")
+	rocio.universidad(universidad3)
 	rocio.setHonorario(5000)
 	rocio.provincias(#{"Santa fe","Cordoba","Buenos Aires"})
 	
@@ -46,7 +46,7 @@ test "test 1" {
 	
 	//Luciana 
 	var luciana = new ProfesionalLibre()
-	luciana.universidad("Rosario")
+	luciana.universidad(universidad1)
 	luciana.setHonorario(3200)
 	luciana.provincias(#{"Santa fe","Entre Rios"})
 	
@@ -59,11 +59,16 @@ test "test 1" {
 	//Empresa de serivicio
 	var empresa = new EmpresaDeServicios()
 	empresa.honorariosReferencia(3500)
-	empresa.profecionales(rocio)
-	empresa.profecionales(luciana)
-	empresa.profecionales(melina)
-	empresa.profecionales(juana)
+	empresa.profesionales(rocio)
+	empresa.profesionales(luciana)
+	empresa.profesionales(melina)
+	empresa.profesionales(juana)
 	
-	assert.equals(#{rocio},empresa.profecionalesCaros())
+	assert.equals(#{rocio},empresa.profesionalesCaros())
+	assert.equals(#{universidad1,universidad2,universidad3},empresa.universidadesFormadoras())
+	assert.equals(juana,empresa.profesionalMasBarato())
+	
+	
+	
 	
 }

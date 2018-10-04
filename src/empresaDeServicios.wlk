@@ -5,18 +5,25 @@ class EmpresaDeServicios {
 	var profesionales = #{}
 	
 	
-	method honorariosReferencia(cuanto){honorarioRef = cuanto}
-	method honorariosReferencia(){return honorarioRef }
+	method honorariosReferencia(cuanto){
+		honorarioRef = cuanto
+	}
+	method honorariosReferencia(){
+		return honorarioRef
+	}
 	
-	method profecionales(cuales){profesionales.add(cuales)}
-	method profecionalesCaros(){return profesionales.filter({prof => prof.honorariosPorHora()
+	method profesionales(cuales){
+		profesionales.add(cuales)
+	}
+	method profesionalesCaros(){
+		return profesionales.filter({prof => prof.honorariosPorHora()
 	> honorarioRef})
 		}
 	
-	method universidadesFundadoras(){
-		var universidades = #{ }
-		universidades = profesionales.asSet({prof => prof.universidad()})
-		return universidades	
+	method universidadesFormadoras(){
+		
+		 return profesionales.map({prof => prof.universidad()}).asSet()
+		
 	}
 	
 	method profesionalMasBarato(){
@@ -26,8 +33,6 @@ class EmpresaDeServicios {
 	method provinciaCubierta(cual){
 		return profesionales.any({prof => prof.provinciasDondePuedeTrabajar()})
 	}
-	
-	
 	
 	
 	
